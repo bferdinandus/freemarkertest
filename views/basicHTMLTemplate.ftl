@@ -11,8 +11,7 @@
 	<body>
 		<div id="framecontent">
 			<div class="innertube">
-				<h1>CSS Top Frame Layout</h1>
-				<h3>Sample text here</h3>
+				<#include "menu.ftl">
 			</div>
 		</div>
 		<div id="maincontent">

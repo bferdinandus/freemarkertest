@@ -36,7 +36,7 @@ component output="false" displayname="components.users.UsersController"  {
 			"usersPerPage" = JavaCast("int", nUsersPerPage)
 		};
 		
-		return request.Freemarker.render(model, "UsersList.ftl");
+		return request.Freemarker.render(model, "usersList.ftl");
 	}
 
 

@@ -1,25 +1,37 @@
 component {
 
 	this.name = "freemarker_" & hash(getCurrentTemplatePath());
-	this.datasource = "peoplexs_test";	
 	this.mappings = {
 		"/components" = expandPath("../components")
 	};
+	this.datasource = "freemarker";	
 
-/* 	function onApplicationStart() {
+	function onApplicationStart() {
+		structClear(application);
+		application.uploadPath = expandPath("../upload");
+
+
 		return true;
 	}
 
-	function onSessionStart() {}
- */
+	/* function onSessionStart() {} */
+
 	// the target page is passed in for reference, 
 	// but you are not required to include it
 	function onRequestStart( string targetPage ) {
-		if (structKeyExists(url, "refresh"))
+		if (structKeyExists(url, "cacheClear"))
 		{
 			cacheRemoveAll();
+			location("/", false, 302);
+		}
+		if (structKeyExists(url, "appRestart"))
+		{
+			onApplicationStart();
+			location("/", false, 302);
 		}
 
+		// important for importing data with decimals like 70,34
+		setLocale("nl_NL");
 		request.freemarker = cacheGet("freemarker");
 		if (isNull(request.freemarker))
 		{

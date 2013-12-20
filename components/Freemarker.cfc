@@ -15,7 +15,7 @@ component output="false" displayname="Freemarker" hint="implements the freemarke
 		freemarkerConfig.setTemplateExceptionHandler(CreateObject("java", "freemarker.template.TemplateExceptionHandler").HTML_DEBUG_HANDLER);
 		freemarkerConfig.setIncompatibleImprovements(CreateObject("java", "freemarker.template.Version").init(2, 3, 20));
 
-		// freemarkerConfig.setSetting("locale", "nl");
+		freemarkerConfig.setSetting("locale", "nl");
 		freemarkerConfig.setSetting("number_format", "computer");
 
 		if(structKeyExists(arguments, "path"))
@@ -23,7 +23,7 @@ component output="false" displayname="Freemarker" hint="implements the freemarke
 			setTemplateDirectory(arguments.path);
 		}
 
-		return this;
+		return this; 
 	}
 
 	public void function setTemplateDirectory( required string path ) {
