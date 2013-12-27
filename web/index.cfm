@@ -2,6 +2,21 @@
 <!--- http://purecss.io/ --->
 <cfscript>
 	sResult="empty";
+
+	request.baseModel = {
+		"cssLinks" = [
+			"/css/style.css",
+			//"/js/jquery-ui-1.10.3/themes/base/jquery-ui.css"
+			"//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"
+		],
+		"javascriptHeaders" = [
+			"/js/jquery-ui-1.10.3/jquery-1.9.1.js",
+			"/js/jquery-ui-1.10.3/ui/jquery-ui.js"
+		],
+		"javascriptFooters" = [
+		]
+	};
+
 	if (structKeyExists(url, "url") && len(url.url))
 	{
 		aParts = listToArray(url.url, "/");
@@ -26,10 +41,17 @@
 
 			sResult = invoke(controller, "#action#");
 		}
+		catch(myError variable) {
+			createObject("component", "components.CFTags").header("404");
+			sResult = request.Freemarker.render({"content" = variable.message}, "404.ftl");
+		}
 		catch(any variable) {
 			// set browser header to 404
 			createObject("component", "components.CFTags").header("404");
-			savecontent variable="sContent" { writeDump(variable); };
+			// used duplicate to make variable a struct. for some reason cfcatch info does not identify as a struct.
+			sContent = createObject("component", "components.BaseController").dump(duplicate(variable)); 
+			savecontent variable="sDump" { writeDump(var=variable, label="full dump", expand=false); };
+			sContent &= sDump;
 			sResult = request.Freemarker.render({"content" = sContent}, "404.ftl");
 		} finally {
 			
@@ -48,5 +70,6 @@
 		sResult = request.Freemarker.render({"dump" = sDump}, "home.ftl");
 	}
 
-	writeOutput(request.freemarker.renderPage(sResult));
+	structInsert(request.baseModel, "content", sResult);
+	writeOutput(request.freemarker.renderPage(request.baseModel));
 </cfscript>

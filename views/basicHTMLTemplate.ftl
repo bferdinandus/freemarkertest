@@ -3,10 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Playground - Freemarker</title>
-		<link rel="stylesheet" type="text/css" href="/css/style.css">
-		
+		<#list cssLinks as link>
+			<link rel="stylesheet" type="text/css" href="${link}">
+		</#list>
+		<#list javascriptHeaders as link>
+			<script src="${link}"></script>
+		</#list>
 	</head>
 	<body>
 		<div id="framecontent">
@@ -19,5 +23,8 @@
 				${content}
 			</div>
 		</div>
+		<#list javascriptFooters as link>
+			<script src="${link}"></script>
+		</#list>
 	</body>
 </html>

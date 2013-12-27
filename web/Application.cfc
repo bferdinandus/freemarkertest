@@ -10,7 +10,6 @@ component {
 		structClear(application);
 		application.uploadPath = expandPath("../upload");
 
-
 		return true;
 	}
 

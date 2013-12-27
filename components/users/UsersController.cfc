@@ -6,7 +6,7 @@
 *
 */
 
-component output="false" displayname="components.users.UsersController"  {
+component output="false" displayname="components.users.UsersController" extends="components.BaseController" {
 
 	public function init(){
 		usersService = new components.users.UsersService();

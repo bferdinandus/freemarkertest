@@ -6,7 +6,7 @@
 *
 */
 
-component output="false" displayname="components.import.ImportController"  {
+component output="false" displayname="components.import.ImportController" extends="components.BaseController" {
 
 	public components.import.ImportController function init(){
 		importService = new components.import.ImportService();
@@ -17,11 +17,8 @@ component output="false" displayname="components.import.ImportController"  {
 		var query = new Query();
 		var sSql = "select lastImport from system";
 		var result = query.setSQL(sSql).execute().getResult();
-		var model = 
-		{
-			"lastUpdate" = result.lastImport
-		};
-
+		var model = createModel();
+		structInsert(model, "lastUpdate", result.lastImport);
 
 		return request.Freemarker.render(model, "import/index.ftl");
 	}

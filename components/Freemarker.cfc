@@ -6,7 +6,7 @@
 *
 */
 
-component output="false" displayname="Freemarker" hint="implements the freemarker renderer"  {
+component output="false" displayname="Freemarker" hint="implements the freemarker renderer" extends="components.BaseService" {
 
 	public function init(){
 		freemarkerConfig = CreateObject("java", "freemarker.template.Configuration").init();
@@ -41,7 +41,6 @@ component output="false" displayname="Freemarker" hint="implements the freemarke
 	
 	
 	public string function render( required struct model, required string templateName ) {
-		prepareModel(arguments.model);
 		var stringWriter = createObject("java", "java.io.StringWriter").init();
 		var template = freemarkerConfig.getTemplate(arguments.templateName);
 		template.process(arguments.model, stringWriter);
@@ -50,35 +49,7 @@ component output="false" displayname="Freemarker" hint="implements the freemarke
 	}
 
 
-	public string function renderPage( required string content ) {
-		return render({"content" = arguments.Content}, "basicHTMLTemplate.ftl", true);
+	public string function renderPage( required struct model ) {
+		return render(arguments.model, "basicHTMLTemplate.ftl");
 	}
-	
-	
-
-	private void function prepareModel( struct model ) {
-		for(sStructKey in arguments.model)
-		{
-			if(isQuery(arguments.model[sStructKey]))
-			{
-				arguments.model[sStructKey] = queryToArray(arguments.model[sStructKey]);
-			}
-
-		}
-		return;
-	}
-
-	private function queryToArray( query ){ 
-		var queryAsArray = [];
-		for (var row in arguments.query){
-			var stRow = {};
-			for(var sColumnName in arguments.query.getMetaData().getColumnLabels())
-			{
-				structInsert(stRow, "#sColumnName#", row[sColumnName]);
-			}
-			arrayAppend( queryAsArray, stRow );
-		}
-		return( queryAsArray );
-	}
-
 }

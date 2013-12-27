@@ -59,3 +59,13 @@
 		margin-right: 25px;
 	}
 /* /Menu */
+
+
+body {
+	font-size: 80%;
+	font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+}
+
+table {
+	font-size: 1em;
+}
