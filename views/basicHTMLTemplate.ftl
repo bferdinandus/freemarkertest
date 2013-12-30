@@ -13,15 +13,13 @@
 		</#list>
 	</head>
 	<body>
-		<div id="framecontent">
-			<div class="innertube">
+		<div id="header" class="pure-g">
+			<div class="pure-u-1">
 				<#include "menu.ftl">
 			</div>
 		</div>
 		<div id="maincontent">
-			<div class="innertube">
-				${content}
-			</div>
+			${content}
 		</div>
 		<#list javascriptFooters as link>
 			<script src="${link}"></script>

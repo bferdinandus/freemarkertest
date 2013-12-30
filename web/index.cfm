@@ -5,9 +5,10 @@
 
 	request.baseModel = {
 		"cssLinks" = [
-			"/css/style.css",
+			"/css/pure.css",
 			//"/js/jquery-ui-1.10.3/themes/base/jquery-ui.css"
-			"//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"
+			"//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css",
+			"/css/style.css"
 		],
 		"javascriptHeaders" = [
 			"/js/jquery-ui-1.10.3/jquery-1.9.1.js",

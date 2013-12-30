@@ -16,13 +16,19 @@ component output="false" displayname="components.labels.LabelsController" extend
 
 	public string function index() {
 		var model = createModel();
-		
-		structInsert(model, "labels", labelsService.getLabels());
 
-		return request.Freemarker.render(model, "labels/index.ftl");
+		return request.Freemarker.render(model, "labels/index.ftl") & list();
 	}
 	
-	
+	public string function list(includeLinks = true) {
+		var model = createModel();
+		
+		structInsert(model, "labels", labelsService.getLabels());
+		structInsert(model, "includeLinks", javaCast("boolean", arguments.includeLinks));
+
+		return request.Freemarker.render(model, "labels/list.ftl");
+	}
+
 	public string function edit() {
 		var stLabel = {};
 		if (structKeyExists(url, "id"))
