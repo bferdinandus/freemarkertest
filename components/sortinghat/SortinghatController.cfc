@@ -16,7 +16,9 @@ component output="false" displayname="components.sortinghat.SortinghatController
 
 	public string function index() {
 		var model = createModel();
-		structInsert(model, "listContent", "list");
+
+		var sRecordsList = new components.bankRecords.BankRecordsController().list();
+		structInsert(model, "listContent", sRecordsList);
 
 		var sLabelsContent = new components.labels.LabelsController().list(includeLinks=false);
 		structInsert(model, "labelsContent", sLabelsContent);

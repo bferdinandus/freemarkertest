@@ -15,7 +15,7 @@ component output="false" displayname="Freemarker" hint="implements the freemarke
 		freemarkerConfig.setTemplateExceptionHandler(CreateObject("java", "freemarker.template.TemplateExceptionHandler").HTML_DEBUG_HANDLER);
 		freemarkerConfig.setIncompatibleImprovements(CreateObject("java", "freemarker.template.Version").init(2, 3, 20));
 
-		freemarkerConfig.setSetting("locale", "nl");
+		freemarkerConfig.setSetting("locale", "nl_NL");
 		freemarkerConfig.setSetting("number_format", "computer");
 
 		if(structKeyExists(arguments, "path"))

@@ -20,11 +20,22 @@ body,
 }
 
 #maincontent {
-	margin: 3em 1em 1em;
+	margin: 3em 0em 1em;
 }
 
+.innertube {
+	padding: .8em;
+}
 
 
 .ui-dialog{	
 	font-size: .9em;
+}
+
+.color-red{
+	color: red;
+}
+
+.color-green{
+	color: green;
 }
