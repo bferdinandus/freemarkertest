@@ -19,7 +19,7 @@ component {
 	// but you are not required to include it
 	function onRequestStart( string targetPage ) {
 		if (structKeyExists(url, "cacheClear"))
-		{
+		/* {
 			cacheRemoveAll();
 			location("/", false, 302);
 		}
@@ -27,16 +27,17 @@ component {
 		{
 			onApplicationStart();
 			location("/", false, 302);
-		}
+		} */
 
 		// important for importing data with decimals like 70,34
 		setLocale("nl_NL");
-		request.freemarker = cacheGet("freemarker");
+		// request.freemarker = cacheGet("freemarker");
+		request.freemarker = javaCast("null", 0);
 		if (isNull(request.freemarker))
 		{
 			request.freemarker = new components.Freemarker();
 			request.freemarker.setTemplateDirectory(expandPath("../views"));
-			cachePut("freemarker", request.freemarker);
+			//cachePut("freemarker", request.freemarker);
 		}
 	}
 

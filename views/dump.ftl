@@ -6,7 +6,7 @@
 		Context:
 		<ul>
 			<#list TagContext as context>
-				<li>${context.TEMPLATE}:${context.LINE}</li>
+				<li>${context.template}:${context.line}</li>
 			</#list>
 		</ul>
 	</p>
