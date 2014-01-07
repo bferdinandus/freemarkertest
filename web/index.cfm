@@ -50,10 +50,10 @@
 			// set browser header to 404
 			createObject("component", "components.CFTags").header("404");
 			// used duplicate to make variable a struct. for some reason cfcatch info does not identify as a struct.
-			sContent = createObject("component", "components.BaseController").dump(duplicate(variable)); 
+			sResult = createObject("component", "components.BaseController").dump(duplicate(variable)); 
 			savecontent variable="sDump" { writeDump(var=variable, label="full dump", expand=false); };
-			sContent &= sDump;
-			sResult = request.Freemarker.render({"content" = sContent}, "404.ftl");
+			sResult &= sDump;
+			sResult = request.Freemarker.render({"content" = sResult}, "404.ftl");
 		} finally {
 			
 		}
