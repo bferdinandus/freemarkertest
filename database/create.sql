@@ -20,7 +20,7 @@ CREATE TABLE `system` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
-CREATE TABLE `freemarker`.`labels` (
+CREATE TABLE `labels` (
   `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`ID`)
