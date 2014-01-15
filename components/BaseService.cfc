@@ -12,17 +12,28 @@ component output="false" displayname="components.BaseService"  {
 		return this;
 	}
 
-	private function queryToArray( query ){ 
+	private function queryToArray( required query queryResult ){ 
+		if (structKeyExists(server, "railo"))
+		{
+			// on a railo server
+			var aColumns = queryResult.getColumnNames();
+		}
+		else
+		{
+			// coldfusion server
+			var aColumns = arguments.queryResult.getMetaData().getColumnLabels();
+		}
+
 		var queryAsArray = [];
-		for (var row in arguments.query){
+		for (var row in arguments.queryResult){
 			var stRow = {};
-			for(var sColumnName in arguments.query.getMetaData().getColumnLabels())
+			for(var sColumnName in aColumns)
 			{
 				structInsert(stRow, "#sColumnName#", row[sColumnName]);
 			}
 			arrayAppend( queryAsArray, stRow );
 		}
-		return( queryAsArray );
+		return queryAsArray;
 	}	
 	
 }
