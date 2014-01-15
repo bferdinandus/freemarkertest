@@ -15,7 +15,7 @@ component output="false" displayname="components.users.UsersController" extends=
 
 
 	public void function index() {
-		location("/users/list", false, 302);
+		location("/users/list", false);
 
 		return;
 	}

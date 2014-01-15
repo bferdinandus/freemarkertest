@@ -40,7 +40,7 @@ component output="false" displayname="components.import.ImportController" extend
 			importService.importFile(stUploadResult.ServerDirectory & "/" & stUploadResult.ServerFile);
 		}
 		
-		location("/import", false, 302);
+		location("/import", false);
 
 		return;
 	}

@@ -21,12 +21,12 @@ component {
 		if (structKeyExists(url, "cacheClear"))
 		/* {
 			cacheRemoveAll();
-			location("/", false, 302);
+			location("/", false);
 		}
 		if (structKeyExists(url, "appRestart"))
 		{
 			onApplicationStart();
-			location("/", false, 302);
+			location("/", false);
 		} */
 
 		// important for importing data with decimals like 70,34
