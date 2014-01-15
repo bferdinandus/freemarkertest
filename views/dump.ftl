@@ -6,7 +6,15 @@
 		Context:
 		<ul>
 			<#list TagContext as context>
-				<li>${context.template}:${context.line}</li>
+				<#-- coldfusion notation -->
+				<#if context.TEMPLATE??>
+					<li>${context.TEMPLATE}:${context.LINE}</li>
+				</#if>
+
+				<#-- railo notation -->
+				<#if context.template??>
+					<li>${context.template}:${context.line}</li>
+				</#if>
 			</#list>
 		</ul>
 	</p>
