@@ -66,7 +66,7 @@ component output="false" displayname="components.labels.LabelsController" extend
 			Throw(type="myError", message="No form submitted");
 		}
 
-		location(url="/labels", false);
+		location(url="/labels", addtoken=false);
 		return;
 	}
 	
@@ -74,7 +74,7 @@ component output="false" displayname="components.labels.LabelsController" extend
 		if (structKeyExists(url, "id") && structKeyExists(url, "confirmed") && url.confirmed)
 		{
 			labelsService.delete(url.id);
-			location(url="/labels", false);
+			location(url="/labels", addtoken=false);
 		}
 		else
 		{

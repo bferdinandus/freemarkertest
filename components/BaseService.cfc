@@ -15,7 +15,7 @@ component output="false" displayname="components.BaseService"  {
 	private function queryToArray( required query queryResult ){ 
 		if (structKeyExists(server, "railo"))
 		{
-			// on a railo server
+			// on a railo server; when you use this on a coldfusion server the columnames are all UCase in stead of the original case given in the query
 			var aColumns = queryResult.getColumnNames();
 		}
 		else
