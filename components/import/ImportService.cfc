@@ -57,12 +57,13 @@ component output="false" displayname="components.import.ImportService"  {
 
 			for (var sItem in aItems)
 			{
+				// replace decimal comma with a point
+				if(reFind("""[0-9]+?,[0-9]{2}""", sItem)){
+					sItem = replace(sItem, ",", ".");
+				}
 				// strip item of ""
 				sItem = reReplace(sItem, '^"(.*)"$', "\1");
-				if (LSisNumeric(sItem))
-				{
-					sItem = LSParseNumber(sItem);
-				}
+
 				query.addParam( value=sItem, null=(len(sItem) ? false : true) /* , cfsqltype="cf_sql_integer" */ ); 
 			}
 			query.execute();

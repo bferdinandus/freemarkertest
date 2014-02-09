@@ -8,7 +8,7 @@ CREATE TABLE `bankrecords` (
   `addSubtract` varchar(3) COLLATE utf8_bin NOT NULL,
   `amount` decimal(7,2) NOT NULL,
   `mutationType` varchar(45) COLLATE utf8_bin NOT NULL,
-  `remarks` varchar(200) COLLATE utf8_bin NOT NULL,
+  `remarks` varchar(512) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `dateRemarksAmount_idx` (`date`,`description`,`amount`,`remarks`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
