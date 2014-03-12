@@ -12,8 +12,26 @@ component output="false" displayname="components.bankRecords.BankRecordsService"
 		return this;
 	}
 
+	public numeric function getRecordCount() {
+		var query = new Query();
+		var sSql = "
+			select count(*) as numberOfRecords
+			from bankrecords
+			";
+		query.setSql(sSql);
+		
+		qResult = query.execute();
+		var nReturn = 0;
+		if (qResult.getPrefix().recordcount)
+		{
+			nReturn = qResult.getResult().numberOfRecords;
+		}
 
-	public array function getRecordsWithLabel(numeric max=100, numeric page=1) {
+		return nReturn;
+	}
+
+
+	public array function getRecordsWithLabel(numeric max=10, numeric page=1) {
 		var nOffset = (arguments.max * arguments.page) - arguments.max;
 		var query = new Query();
 		var sSql = "
@@ -22,7 +40,7 @@ component output="false" displayname="components.bankRecords.BankRecordsService"
 				left join labelsBankRecords on labelsBankRecords.bankrecordID = bankrecords.ID
 				left join labels on labels.ID = labelsBankRecords.labelID
 
-			order by remarks
+			order by bankrecords.ID
 			limit :offset, :rowCount 
 			";
 		query.setSql(sSql);
@@ -30,13 +48,13 @@ component output="false" displayname="components.bankRecords.BankRecordsService"
 		query.addParam( name="rowCount", value=arguments.max, cfsqltype="cf_sql_integer" ); 
 		
 		qResult = query.execute();
-		var stReturn = {};
+		var aReturn = [];
 		if (qResult.getPrefix().recordcount)
 		{
-			stReturn = queryToArray(qResult.getResult());
+			aReturn = queryToArray(qResult.getResult());
 		}
 
-		return stReturn;
+		return aReturn;
 	}
 	
 }

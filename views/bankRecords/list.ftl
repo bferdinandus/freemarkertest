@@ -1,4 +1,5 @@
-<table class="pure-table pure-table-horizontal pure-table-striped">
+<#include "/macros/pagination.ftl">
+<table class="pure-table pure-table-horizontal pure-table-striped width100">
 	<tr>
 		<th>ID</th>
 		<th>Description</th>
@@ -24,4 +25,9 @@
 			<td>${record.label!""}</td>
 		</tr>
 	</#list>
+	<tr>
+		<td colspan="5">
+			<@pagination nNumberOfPages=(recordCount / recordsPerPage)?floor />
+		</td>
+	</tr>
 </table>

@@ -39,3 +39,11 @@ body,
 .color-green{
 	color: green;
 }
+
+.width100 {
+	width: 100%;
+}
+
+.pagination {
+	text-align: center;
+}

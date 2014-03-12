@@ -1,5 +1,6 @@
-<#macro pagination nNumberOfPages nShowNumberOfPages=5>
-	<#assign nStartPage = page - (nShowNumberOfPages/2)?floor />
+<#macro pagination nNumberOfPages nShowNumberOfPages=3>
+<div class="pagination">
+	<#assign nStartPage = currentPage - (nShowNumberOfPages/2)?floor />
 	<#assign nEndPage = nStartPage + nShowNumberOfPages - 1 />
 
 	<#if (nStartPage < 1) >
@@ -15,30 +16,33 @@
 		</#if>
 	</#if>
 
-	<a href = "?page=1" >first</a>
-	<#if (page == 1) >
-		prev
+	<#if (currentPage == 1) >
+		<a href="?page=1" class="pure-button pure-button-disabled">first</a>
+		<a href="#" class="pure-button pure-button-disabled">«</a>
 	<#else>
-		<a href = "?page=${page-1}" >prev</a>
+		<a href="?page=1" class="pure-button">first</a>
+		<a href="?page=${currentPage-1}" class="pure-button">«</a>
 	</#if>
 
 	<#if (nStartPage > 1) >
 		...
 	</#if>
 	<#list nStartPage..nEndPage as i>
-		<#if (i == page)>
-			${i}
+		<#if (i == currentPage)>
+			<a href="#" class="pure-button pure-button-active">${i}</a>
 		<#else>
-			<a href="?page=${i}">${i}</a>
+			<a href="?page=${i}" class="pure-button">${i}</a>
 		</#if> 
 	</#list>
 	<#if (nEndPage < nNumberOfPages) >
 		...
 	</#if>
-	<#if (page == nNumberOfPages) >
-		next
+	<#if (currentPage == nNumberOfPages) >
+		<a href="#" class="pure-button pure-button-disabled">»</a>
+		<a href="#" class="pure-button pure-button-disabled">last</a>
 	<#else>
-		<a href = "?page=${page+1}" >next</a>
+		<a href="?page=${currentPage+1}" class="pure-button">»</a>
+		<a href="?page=${nNumberOfPages}" class="pure-button">last</a>
 	</#if>
-	<a href = "?page=${nNumberOfPages}" >last</a>
+</div>
 </#macro>
