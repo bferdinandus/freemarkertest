@@ -19,9 +19,10 @@ component output="false" displayname="components.sortinghat.SortinghatController
 
 		var sRecordsList = new components.bankRecords.BankRecordsController().list();
 		structInsert(model, "listContent", sRecordsList);
-
+		
 		var sLabelsContent = new components.labels.LabelsController().list(includeLinks=false);
 		structInsert(model, "labelsContent", sLabelsContent);
+		structInsert(model, "jsHeaders", ["/js/sortinghat.js"]);
 
 		return request.Freemarker.render(model, "sortinghat/index.ftl");
 	}

@@ -43,6 +43,10 @@ component output="false" displayname="Freemarker" hint="implements the freemarke
 	public string function render( required struct model, required string templateName ) {
 		var stringWriter = createObject("java", "java.io.StringWriter").init();
 		var template = freemarkerConfig.getTemplate(arguments.templateName);
+		if (structKeyExists(model, "jsHeaders")) {
+			arrayAppend(request.baseModel.javascriptHeaders, model.jsHeaders, true);
+		}
+
 		template.process(arguments.model, stringWriter);
 
 		return stringWriter.toSTring();
