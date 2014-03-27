@@ -11,6 +11,7 @@
 			"/css/style.css"
 		],
 		"javascriptHeaders" = [
+			"/js/cssua.js",
 			"/js/jquery-ui-1.10.3/jquery-1.9.1.js",
 			"/js/jquery-ui-1.10.3/ui/jquery-ui.js"
 		],
