@@ -1,5 +1,5 @@
 <#include "/macros/pagination.ftl">
-<table class="pure-table pure-table-horizontal pure-table-striped width100">
+<table class="pure-table pure-table-horizontal pure-table-striped pure-u-1">
 	<tr>
 		<th>ID</th>
 		<th>Description</th>
